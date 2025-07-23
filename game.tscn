@@ -220,4 +220,5 @@ wait_time = 6
 [connection signal="mob_spawned" from="Spawners/MobSpawner3D" to="." method="_on_mob_spawner_3d_mob_spawned"]
 [connection signal="mob_spawned" from="Spawners/MobSpawner3D2" to="." method="_on_mob_spawner_3d_mob_spawned"]
 [connection signal="mob_spawned" from="Spawners/MobSpawner3D3" to="." method="_on_mob_spawner_3d_mob_spawned"]
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

@@ -76,3 +76,7 @@ func _on_game_timer_timeout() -> void:
 	show_time_left(time_left)
 	if time_left == 0:
 		player_won()
+
+
+func _on_player_player_died() -> void:
+	player_died()

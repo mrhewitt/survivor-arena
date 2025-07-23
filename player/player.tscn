@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8wtojmalq8ek"]
+[gd_scene load_steps=7 format=3 uid="uid://b8wtojmalq8ek"]
 
 [ext_resource type="PackedScene" uid="uid://g4jw1w5kbdet" path="res://player/simple_gun/gun_model.glb" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://ddntrcf00pffe" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://dt3uq6jjyhooo" path="res://player/reticle.png" id="3_g1dw6"]
 [ext_resource type="AudioStream" uid="uid://crd8pj20l6n5y" path="res://player/gun_shoot.wav" id="4_yw30f"]
+[ext_resource type="PackedScene" uid="uid://bf7oy6v1sxl8i" path="res://player/player_health_bar.tscn" id="5_qjkh3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 
@@ -49,3 +50,6 @@ one_shot = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_yw30f")
+
+[node name="PlayerHealthBar" parent="." instance=ExtResource("5_qjkh3")]
+unique_name_in_owner = true

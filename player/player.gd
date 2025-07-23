@@ -1,10 +1,20 @@
 extends CharacterBody3D
 class_name Player
 
+signal player_died
+
 const SPEED: float = 5.5
+
+@export var max_health: int = 100 
+@onready var health_bar: ProgressBar = %PlayerHealthBar
+
+var health: float = 100.0
 
 
 func _ready() -> void:
+	health = max_health
+	health_bar.set_max_health(max_health)
+	health_bar.adjust_health(health)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
@@ -38,11 +48,29 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0.0
 		
 	move_and_slide()
+	
+	# work out how much damage player takes
+	# Mobs provide a damage value which is measured as amount of damage
+	# it does per second, thus for each Mob touching us damage is accumulated
+	# by Mobs damage amount * delta
+	var damage: float = 0
+	# ignore floor we are always on
+	if get_slide_collision_count() > 1:
+		for i in get_slide_collision_count():
+			var body = get_slide_collision(i).get_collider()
+			if body.has_method("get_damage"):
+				damage += body.get_damage() * delta 
+
+	if damage > 0:
+		health = maxf(health-damage, 0)
+		health_bar.adjust_health(health)
+		if health == 0:
+			player_died.emit()
 
 	if Input.is_action_pressed("shoot") && %BulletTimer.is_stopped():
 		shoot_bullet()
-	
-	
+
+
 func shoot_bullet() -> void:
 	const BULLET_3D = preload("res://player/bullet_3d.tscn")
 	var new_bullet = BULLET_3D.instantiate()
@@ -52,7 +80,3 @@ func shoot_bullet() -> void:
 	
 	%BulletTimer.start()
 	%AudioStreamPlayer.play()
-
-
-func _on_area_3d_body_entered(body: Node3D) -> void:
-	pass # Replace with function body.
