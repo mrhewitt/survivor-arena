@@ -10,10 +10,14 @@ signal mob_spawned(mod)
 @onready var timer: Timer = %Timer
 
 
-func _ready() -> void:
+func start() -> void:
 	set_spawn_time()
 	timer.start()
+
 	
+func stop() -> void:
+	timer.stop()	
+
 
 func set_spawn_time() -> void:
 	timer.wait_time = randi_range(min_spawn_delay, max_spawn_delay)

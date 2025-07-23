@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 const SPEED: float = 5.5
 
@@ -51,3 +52,7 @@ func shoot_bullet() -> void:
 	
 	%BulletTimer.start()
 	%AudioStreamPlayer.play()
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	pass # Replace with function body.

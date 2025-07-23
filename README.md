@@ -17,3 +17,8 @@ Not done
 ### Add a health bar
 
 Not done
+
+
+## Credits
+
+Opening font made on: <a href="https://www.textstudio.com/">Font generator</a>

@@ -4,6 +4,7 @@ class_name Mob
 signal died()
 
 @export var points: int = 10
+@export var damage: int = 1
 
 @onready var hurt_sound: AudioStreamPlayer2D = %HurtSound
 @onready var die_sound: AudioStreamPlayer2D = %DieSound

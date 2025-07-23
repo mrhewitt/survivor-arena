@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvjbe4ys5dcco"]
+[gd_scene load_steps=13 format=3 uid="uid://cvjbe4ys5dcco"]
 
 [ext_resource type="Script" uid="uid://btxafvmmlrbgx" path="res://game.gd" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://b8wtojmalq8ek" path="res://player/player.tscn" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://c07i7y11xwx4j" path="res://level/platform.tres" id="1_feb5d"]
 [ext_resource type="Material" uid="uid://by54u57vl53br" path="res://level/bridge.tres" id="2_feb5d"]
 [ext_resource type="PackedScene" uid="uid://carnebt48hkv5" path="res://mob/spawner/mob_spawner_3d.tscn" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://fmgjrb0xiq4a" path="res://action_logo.tscn" id="6_ryrav"]
+[ext_resource type="Texture2D" uid="uid://dq3nmn6ivyuoq" path="res://survive_logo.png" id="7_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://cug17xk4qge7k" path="res://dead_logo.png" id="8_vef74"]
+[ext_resource type="Texture2D" uid="uid://c256e7xnv84ou" path="res://win_logo.png" id="9_vef74"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7jktm"]
 
@@ -141,6 +145,7 @@ size = Vector3(6, 1, 3)
 material = ExtResource("2_feb5d")
 
 [node name="Spawners" type="Node" parent="."]
+unique_name_in_owner = true
 
 [node name="MobSpawner3D" parent="Spawners" instance=ExtResource("4_fc0e3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4, 0, 0)
@@ -166,7 +171,23 @@ text = "Score: 0"
 label_settings = SubResource("LabelSettings_ryrav")
 justification_flags = 0
 
+[node name="TimeLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.5
+offset_top = 9.0
+offset_right = 62.5
+offset_bottom = 54.0
+grow_horizontal = 2
+text = "Time Left: 120"
+label_settings = SubResource("LabelSettings_ryrav")
+horizontal_alignment = 1
+justification_flags = 0
+
 [node name="Player" parent="." instance=ExtResource("1_80nbo")]
+unique_name_in_owner = true
 transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -2, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -176,7 +197,27 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7jktm")
 
+[node name="GameTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="SurviveLogo" parent="." instance=ExtResource("6_ryrav")]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("7_j5wjh")
+
+[node name="DeadLogo" parent="." instance=ExtResource("6_ryrav")]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("8_vef74")
+
+[node name="WinLogo" parent="." instance=ExtResource("6_ryrav")]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("9_vef74")
+wait_time = 6
+
 [connection signal="body_entered" from="KillPlane" to="." method="_on_kill_plane_body_entered"]
 [connection signal="mob_spawned" from="Spawners/MobSpawner3D" to="." method="_on_mob_spawner_3d_mob_spawned"]
 [connection signal="mob_spawned" from="Spawners/MobSpawner3D2" to="." method="_on_mob_spawner_3d_mob_spawned"]
 [connection signal="mob_spawned" from="Spawners/MobSpawner3D3" to="." method="_on_mob_spawner_3d_mob_spawned"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
