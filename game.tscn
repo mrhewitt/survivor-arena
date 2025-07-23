@@ -1,0 +1,182 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvjbe4ys5dcco"]
+
+[ext_resource type="Script" uid="uid://btxafvmmlrbgx" path="res://game.gd" id="1_7jktm"]
+[ext_resource type="PackedScene" uid="uid://b8wtojmalq8ek" path="res://player/player.tscn" id="1_80nbo"]
+[ext_resource type="Material" uid="uid://c07i7y11xwx4j" path="res://level/platform.tres" id="1_feb5d"]
+[ext_resource type="Material" uid="uid://by54u57vl53br" path="res://level/bridge.tres" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://carnebt48hkv5" path="res://mob/spawner/mob_spawner_3d.tscn" id="4_fc0e3"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7jktm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ryrav"]
+font_size = 32
+shadow_size = 2
+shadow_color = Color(0.00784314, 0.00784314, 0.00784314, 1)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="Environment" id="Environment_7jktm"]
+background_mode = 1
+background_color = Color(0.21115, 0.447168, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.907942, 0.907942, 0.907942, 1)
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.203676, 0.378583, 0.797964, 1)
+fog_density = 0.0055
+fog_height = -4.0
+fog_height_density = 0.35
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_7jktm")
+
+[node name="KillPlane" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillPlane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+shape = SubResource("WorldBoundaryShape3D_7jktm")
+
+[node name="Level" type="Node" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -5, 0)
+use_collision = true
+size = Vector3(10, 10, 10)
+material = ExtResource("1_feb5d")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -5, 0)
+use_collision = true
+size = Vector3(14, 10, 10)
+material = ExtResource("1_feb5d")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, -5, 18)
+use_collision = true
+size = Vector3(14, 10, 10)
+material = ExtResource("1_feb5d")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.5, -5, 18)
+use_collision = true
+size = Vector3(14, 10, 14)
+material = ExtResource("1_feb5d")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -51.5, -5, 10.5)
+use_collision = true
+size = Vector3(45, 10, 38)
+material = ExtResource("1_feb5d")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.2723, -0.5, 19.8142)
+use_collision = true
+size = Vector3(4.46826, 1, 9)
+material = ExtResource("2_feb5d")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.00151, -0.5, 0.368347)
+use_collision = true
+size = Vector3(4.53186, 1, 10)
+material = ExtResource("2_feb5d")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.0985, -0.5, 0.368347)
+use_collision = true
+size = Vector3(4.532, 1, 24)
+material = ExtResource("2_feb5d")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -20.5985, -0.5, 11.2683)
+use_collision = true
+size = Vector3(4.53186, 1, 17)
+material = ExtResource("2_feb5d")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.0985, -0.5, 22.2683)
+use_collision = true
+size = Vector3(4.532, 1, 25)
+material = ExtResource("2_feb5d")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.59849, -0.5, 46.4683)
+use_collision = true
+size = Vector3(4.532, 1, 80)
+material = ExtResource("2_feb5d")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -49.5985, -0.5, 41.0183)
+use_collision = true
+size = Vector3(4.532, 1, 15.5)
+material = ExtResource("2_feb5d")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.59849, -0.5, -25.5317)
+use_collision = true
+size = Vector3(4.532, 1, 80)
+material = ExtResource("2_feb5d")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -49.5985, -0.5, -19.9817)
+use_collision = true
+size = Vector3(4.532, 1, 15.5)
+material = ExtResource("2_feb5d")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 34.9015, -0.5, 10.3683)
+use_collision = true
+size = Vector3(4.532, 1, 77)
+material = ExtResource("2_feb5d")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.127, -0.5, 8)
+use_collision = true
+size = Vector3(6, 1, 7)
+material = ExtResource("2_feb5d")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.873, -0.5, 8)
+use_collision = true
+size = Vector3(6, 1, 3)
+material = ExtResource("2_feb5d")
+
+[node name="Spawners" type="Node" parent="."]
+
+[node name="MobSpawner3D" parent="Spawners" instance=ExtResource("4_fc0e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4, 0, 0)
+max_spawn_delay = 8
+
+[node name="MobSpawner3D2" parent="Spawners" instance=ExtResource("4_fc0e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4, 0, 18)
+min_spawn_delay = 3
+max_spawn_delay = 6
+
+[node name="MobSpawner3D3" parent="Spawners" instance=ExtResource("4_fc0e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 18)
+min_spawn_delay = 4
+max_spawn_delay = 7
+
+[node name="ScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 9.0
+offset_right = 141.0
+offset_bottom = 54.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_ryrav")
+justification_flags = 0
+
+[node name="Player" parent="." instance=ExtResource("1_80nbo")]
+transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -2, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.353553, -0.883883, 0.306186, 0.353553, 0.176777, 0.918559, -0.866025, 0.433013, 0.25, 7.99791, 26.3425, 18.0787)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7jktm")
+
+[connection signal="body_entered" from="KillPlane" to="." method="_on_kill_plane_body_entered"]
+[connection signal="mob_spawned" from="Spawners/MobSpawner3D" to="." method="_on_mob_spawner_3d_mob_spawned"]
+[connection signal="mob_spawned" from="Spawners/MobSpawner3D2" to="." method="_on_mob_spawner_3d_mob_spawned"]
+[connection signal="mob_spawned" from="Spawners/MobSpawner3D3" to="." method="_on_mob_spawner_3d_mob_spawned"]
