@@ -3,6 +3,8 @@
 This repository is my implementation of the game built following GDQuest tutorial.<br/>
 Course videos : https://www.gdquest.com/library/first_3d_game_godot4_arena_fps/
 
+<p align="center"><img width="560" src="https://res.cloudinary.com/dbgabg3vb/image/upload/screenshot_ow3q2o.png" /></p>
+
 #### Modifications
 
 - Randomized rate at which mobs are spawned
